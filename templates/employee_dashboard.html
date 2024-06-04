@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <meta http-equiv="refresh" content="5">
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row mb-2 mx-3">
+            <h2 class="mb-4 w-75">Welcome, {{ employee.employee_name }} Role - {{employee.employee_role}}, User - {{user}}</h2>
+            <div class="col-md-2 mx-4">
+                <a href="/" class="btn btn-outline-danger btn-block">Logout</a>
+            </div>
+        </div>
+        
+        <!-- Account Overview -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <form action="{{complete_url}}" method="POST">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Index</th>
+                            <th>Customer ID</th>
+                            <th>Task Type</th>
+                            <th>Task Desc</th>
+                            <th>Done</th>
+                            <th>Complete Task</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detail in task %}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{ detail['customer_id'] }}</td>
+                                <td>{{ detail['task_type'] }}</td>
+                                <td>{{ detail['task_desc'] }}</td>
+                                <td>{{ detail['done'] }}</td>
+                                <td><button name = index value = {{loop.index}} type="submit" class="btn btn-primary">Complete</button></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+            </div>
+
+       
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Loan Application</h2>
+
+        <form action="{{loan_link}}" method="POST">
+            <div class="form-group">
+                <label for="loanType">Loan Type</label>
+                <select id="loanType" name="loan_type" class="form-control" required>
+                    <option value="">Select Loan Type</option>
+                    <option value="Education Loan">Education Loan (Interest Rate: 4.5)</option>
+                    <option value="Business Loan">Business Loan (Interest Rate: 7.5)</option>
+                    <option value="House Loan">House Loan (Interest Rate: 6)</option>
+                    <option value="Personal Loan">Personal Loan (Interest Rate: 7)</option>
+                    <option value="Car Loan">Car Loan (Interest Rate: 6.5)</option>
+                    <option value="Land Loan">Land Loan (Interest Rate: 5.5)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount</label>
+                <input type="number" id="loanAmount" name="loan_amount" class="form-control" placeholder="Enter loan amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="loanDuration">Loan Duration (Months)</label>
+                <input type="number" id="loanDuration" name="loan_duration" class="form-control" placeholder="Enter loan duration in months" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Grant Loan</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

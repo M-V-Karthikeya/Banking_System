@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <meta http-equiv="refresh" content="5">
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row mb-2 mx-3">
+            <h2 class="mb-4 w-75">Welcome, {{ customer.customer_name }}, User - {{user}}</h2>
+            <div class="col-md-2 mx-4">
+                <a href="/" class="btn btn-outline-danger btn-block">Logout</a>
+            </div>
+        </div>
+        
+        <!-- Account Overview -->
+        <div class="card mb-4">
+            <div class="card-header">
+                Account Overview
+            </div>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Loan Type</th>
+                        <th>Loan Amount</th>
+                        <th>Start Date</th>
+                        <th>Monthly Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detail in loan_info %}
+                        <tr>
+                            <td>{{ detail['loan_type'] }}</td>
+                            <td>{{ detail['loan_amount'] }}</td>
+                            <td>{{ detail['start_date'] }}</td>
+                            <td>{{ detail['monthly_payment'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="col-md-3 my-3">
+                <a href="{{ payBill_link }}" class="btn btn-info btn-block">Pay Bill</a>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <form action="{{ form_url }}" method = "POST">
+                    <button class="btn btn-primary btn-block" type="submit">Check Balance</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ transfer_link }}" class="btn btn-info btn-block">Transfer Money</a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ newAcc_link }}" class="btn btn-success btn-block">New Account</a>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <a href="{{ withdraw_link }}" class="btn btn-warning btn-block">Withdraw Money</a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ deposit_link }}" class="btn btn-danger btn-block">Deposit Money</a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ loan_link }}" class="btn btn-secondary btn-block">Need a Loan</a>
+            </div>
+            
+        </div>
+
+       
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Pay Bill</h2>
+        <form action="{{ payBill_link }}" method="POST">
+            <div class="form-group">
+                <label for="account">Choose your account:</label>
+                <select id="account" name="account_choice" class="form-control">
+                    {% for account in acc_details %}
+                    <option value="{{ account.account_id }}">{{ account.account_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="loan">Select loan:</label>
+                <select id="loan" name="loan_choice" class="form-control">
+                    {% for loan in loan_details %}
+                    <option value="{{ loan.loan_id }}">{{ loan.loan_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Pay Bill</button>
+        </form>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
